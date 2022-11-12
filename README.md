@@ -5,6 +5,7 @@
 - This is how I view glua and this is how I think everyone should get started with it.
 - Our [discord](https://discord.gg/ZPxpb7KFct). 
 - If you need help with anything contact us in the discord server.
+- I suggest you setup a test server for testing your addons.
 
 ## Getting Started - WIKI
 - PLEASE for the love of god always use the [wiki](https://wiki.facepunch.com/gmod)
@@ -66,5 +67,51 @@ concommand.Add("example", function(self)
     frame:SetTitle("Snoopy's Guide")
 end)
 
+```
+
+## Getting Started - Writing nice code
+- Examples will be shown of what you should and shouldn't do when writing code.
+```lua
+// Example: bad
+  function badCode()
+ if not p then return end 
+ if p then 
+    return ""
+ else
+    return true
+ end 
+end 
+
+// Whats wrong with this code. 
+// Well line: 1 is not done right: function badCode( p ) this is the correct way of doing it
+// Line: 2:7 are not indented correctly and easy way to fix this press tab indent your code
+```
+
+```lua 
+// Example: good
+function goodCode(p, t)
+    for k, v in pairs( player.GetAll() ) do 
+        if !p:IsPlayer() or !IsValid(p) then return end 
+        if !t then return end 
+        t.name = p:Name()
+        t.sid = p:SteamID()
+    end 
+    return t or ""
+end 
+
+// Whats good with this code. 
+// Well line: 1 was setup correctly.
+// Line: 2:8 are indented correctly and easy to read.
+// the info defined in the function is setup correctly
+```
+
+
+### GLua - Globals
+- A global is a global string or kinda like a local but global
+- A good pratice is naming your globa after your addon so it doesn't conflict with other addons.
+- Globals should always be at the top of the code or file
+ ```lua
+   Global = Global or {} // this is a global means it can be used anywhere.
+   local string = ""  // this is a local means it can't be used anywhere else.
 ```
 
