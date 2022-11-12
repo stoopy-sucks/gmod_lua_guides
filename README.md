@@ -36,3 +36,35 @@ function pMeta:getSteamID()
 end
 
 ```
+
+## Getting Started - sv_.lua
+- The prefix "sv" stands for server this means serverside so clientside code wont work here.
+  `LocalPlayer() wont work here`
+- Code example. I used a meta table bc im lazy
+```lua
+function ServerSide(p, v)
+    if !IsValid(p) then return end 
+    if v == "" then return end 
+    local a = tostring(v) 
+    if a < 1 then return end 
+    return a  
+end 
+
+```
+
+## Getting Started - cl_.lua
+
+- The prefix "cl" stands for client this means clientside or frontend code.
+- Don't put severside code here.
+```lua
+concommand.Add("example", function(self) 
+    // This is poop ui code but it is used as an example for clientside code/
+    local frame = vgui.Create("DFrame")
+    frame:SetSize(600, 550)
+    frame:Center()
+    frame:MakePopup()
+    frame:SetTitle("Snoopy's Guide")
+end)
+
+```
+
